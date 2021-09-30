@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GameStateService } from 'src/app/services/game-state.service';
 
 @Component({
   selector: 'app-game',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameComponent implements OnInit {
 
-  constructor() { }
+  constructor(private game:GameStateService) { }
 
   ngOnInit(): void {
+    /**Every time state is updated, do this:
+     *  */ 
+   this.game.state.subscribe(state=>{
+     console.log(state);
+   });
+   this.game.generateSimon();
+  }
+
+  playerGuess(guess:string){
+    this.game.playerGuess(guess);
   }
 
 }
