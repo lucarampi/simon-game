@@ -17,6 +17,7 @@ export class GameStateService {
   }
 
   private get randomColor(): string {
+    console.log("RANDOM COLOR")
     return COLORS[Math.floor(Math.random() * 3.9)];
   }
 
@@ -25,9 +26,12 @@ export class GameStateService {
       this.count++;
     }
     this.simon.push(this.randomColor);
+    console.log("APPENDING")
   }
 
   generateSimon(): string[] {
+    console.log("GENERATING")
+
     for (let i = 0; i < this.count; i++) {
       this.appendSimon();
     }
@@ -36,30 +40,38 @@ export class GameStateService {
   }
 
   restartSimon(): string[] {
+    console.log("RESTARTING")
     this.count = START_COUNT;
+    this.player = [];
+    this.simon =[];
     return this.generateSimon();
   }
 
   playerGuess(guess: string) {
     this.player.push(guess)
     if (!this.comparePlayerSimom()) {
-      this.player = [];
+      this.restartSimon()
     }
+    console.log(this.simon)
     this.setState();
   }
 
-  updateGame(){
+  updateGame() {
+    console.log("UPDATING")
     this.appendSimon(true);
     this.player = []
   }
 
   comparePlayerSimom(): boolean {
-    this.player.forEach((element, index) => {
-      if (element !== this.simon[index]) {
+    console.log("COMPARING")
+    for (let i = 0; i < this.player.length; i++) {
+      if (this.player[i] !== this.simon[i]) {
+        console.log("WRONG")
         return false;
       }
-    })
-    if(this.player.length === this.simon.length){
+    }
+    console.log("RIGHT")
+    if (this.player.length === this.simon.length) {
       this.updateGame()
     }
     return true;
