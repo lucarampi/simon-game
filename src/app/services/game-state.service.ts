@@ -52,7 +52,6 @@ export class GameStateService {
     if (!this.comparePlayerSimom()) {
       this.restartSimon()
     }
-    console.log(this.simon)
     this.setState();
   }
 

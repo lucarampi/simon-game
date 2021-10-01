@@ -7,12 +7,11 @@ import { EventEmitter } from '@angular/core';
   styleUrls: ['./game-button.component.css']
 })
 export class GameButtonComponent implements OnInit {
-  @Input()
-  color!: string;
+  @Input() color!: string;
+  @Input() active: boolean = false;
 
   @Output()
   guess: EventEmitter<string> = new EventEmitter<string>();
-
   constructor() { }
 
   ngOnInit(): void {

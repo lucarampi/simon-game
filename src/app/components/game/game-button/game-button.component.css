@@ -1,0 +1,39 @@
+button {
+    width: 6rem;
+    height: 6rem;
+    border: 0.2rem solid;
+    border-radius: 4rem;
+    background-color: var(--black);
+}
+
+.green {
+    border-color: var(--green);
+}
+
+.green:active, .green.trigger {
+    background-color: var(--green);
+}
+
+.blue {
+    border-color: var(--blue);
+}
+
+.blue:active, .blue.trigger {
+    background-color: var(--blue);
+}
+
+.red {
+    border-color: var(--red);
+}
+
+.red:active, .red.trigger {
+    background-color: var(--red);
+}
+
+.yellow {
+    border-color: var(--yellow);
+}
+
+.yellow:active, .yellow.trigger {
+    background-color: var(--yellow);
+}
