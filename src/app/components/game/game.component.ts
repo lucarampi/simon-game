@@ -44,15 +44,16 @@ export class GameComponent implements OnInit {
 
   playerGuess(guess: string) {
     let config = this.getAccess();
-    if (config.playing === true)
+    if (config.playing === true) {
       this.gameService.playerGuess(guess);
+    }
   }
 
   checkAccess(): void {
     this.gameService.checkAccess()
   }
 
-  toggleMuted():boolean{
+  toggleMuted(): boolean {
     return this.gameService.toggleMuted();
   }
 
@@ -66,7 +67,6 @@ export class GameComponent implements OnInit {
     }
     this.gameService.setPlaying(true);
     this.gameService.restartSimon();
-    
     this.ngOnInit();
   }
 

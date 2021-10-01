@@ -21,7 +21,20 @@ export class GameStateService {
 
   constructor() {
     this.count = START_COUNT;
+    this.audio.load()
+    this.audio_red.load()
+    this.audio_yellow.load()
+    this.audio_blue.load()
+    this.audio_green.load()
+    this.audio_wrong.load()
     this.audio.autoplay
+    this.audio.autoplay
+    this.audio_red.autoplay
+    this.audio_yellow.autoplay
+    this.audio_blue.autoplay
+    this.audio_green.autoplay
+    this.audio_wrong.autoplay
+
   }
 
   private get randomColor(): string {
@@ -53,7 +66,6 @@ export class GameStateService {
     this.audio_blue.muted = config.muted
     this.audio_green.muted = config.muted
     this.audio_wrong.muted = config.muted
-
     this.audio.muted = config.muted
     localStorage['session'] = JSON.stringify(config);
     return config.muted
