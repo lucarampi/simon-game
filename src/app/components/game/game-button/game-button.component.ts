@@ -19,7 +19,6 @@ export class GameButtonComponent implements OnInit {
   }
 
   onClick() {
-
     this.guess.emit(this.color);
   }
 }

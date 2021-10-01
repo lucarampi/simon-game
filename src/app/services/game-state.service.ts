@@ -21,7 +21,7 @@ export class GameStateService {
     return COLORS[Math.floor(Math.random() * 3.9)];
   }
 
-  getAccess():Config {
+  getAccess(): Config {
     const config = localStorage['session'];
     return config ? JSON.parse(config) : false;
   }
@@ -39,10 +39,12 @@ export class GameStateService {
 
   firstStart(): void {
     let config = this.getAccess();
-    console.log(config)
     config.is_first_access = false;
-    console.log(config)
     localStorage['session'] = JSON.stringify(config);
+  }
+  isFirstStart(): boolean {
+    let config = this.getAccess();
+    return config.is_first_access
   }
 
   appendSimon(incremtent: boolean = false): void {
@@ -76,9 +78,19 @@ export class GameStateService {
     this.player.push(guess)
     if (!this.comparePlayerSimom()) {
       this.audioButton('wrong');
-      this.restartSimon()
     }
     this.setState();
+  }
+
+  setPlaying(status: boolean): void {
+    let config = this.getAccess()
+    config.playing = status;
+    localStorage['session'] = JSON.stringify(config);
+  }
+
+  getPlaying(): boolean {
+    let config = this.getAccess();
+    return config.playing
   }
 
   audioButton(guess: string): void {
@@ -126,10 +138,13 @@ export class GameStateService {
   }
 
   comparePlayerSimom(): boolean {
+    let config = this.getAccess()
     console.log("COMPARING")
     for (let i = 0; i < this.player.length; i++) {
       if (this.player[i] !== this.simon[i]) {
         console.log("WRONG")
+        config.playing = false;
+        localStorage['session'] = JSON.stringify(config);
         return false;
       }
     }

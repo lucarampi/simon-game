@@ -1,4 +1,3 @@
-import { state } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 
 import { Config, sleep } from 'src/app/models';
@@ -11,7 +10,7 @@ import { GameStateService, } from 'src/app/services/game-state.service';
 })
 export class GameComponent implements OnInit {
   count?: number;
-  config:Config;
+  config: Config;
   system_colors: any = {
     red: false,
     purple: false,
@@ -33,33 +32,40 @@ export class GameComponent implements OnInit {
       }
     });
     this.checkAccess();
-    this.config = this.getAccess()
-    this.generateSimon()
+    this.config = this.getAccess();
   }
 
-  generateSimon():void{
-    let config = this.getAccess()
-    if(config.playing === false && config.is_first_access !== true){
-      this.gameService.generateSimon()
-    }
-
-  }
+  // generateSimon(): void {
+  //   let config = this.getAccess()
+  //   if (this.gameService.getPlaying() && config.is_first_access !== true) {
+  //     this.gameService.generateSimon()
+  //   }
+  // }
 
   playerGuess(guess: string) {
-    this.gameService.playerGuess(guess);
+    let config = this.getAccess();
+    if (config.playing === true)
+      this.gameService.playerGuess(guess);
   }
 
-  checkAccess():void{
+  checkAccess(): void {
     this.gameService.checkAccess()
   }
-  getAccess():Config{
+
+  getAccess(): Config {
     return this.gameService.getAccess()
   }
-  firstStart():void{
-    this.gameService.firstStart()
+
+  gameStart(): void {
+    if (this.gameService.isFirstStart()) {
+      this.gameService.firstStart()
+    }
+    this.gameService.setPlaying(true);
+    this.gameService.restartSimon();
+    
     this.ngOnInit();
   }
- 
+
 
   async teasePlayer(simon: string[]) {
     for (let i = 0; i < simon.length; i++) {

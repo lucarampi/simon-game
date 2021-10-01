@@ -6,7 +6,8 @@
 
     <div class="flex middle">
         <app-game-button [active]="system_colors.blue" color="blue" (guess)="playerGuess($event)"></app-game-button>
-        <p>{{count}}</p>
+        <p *ngIf="getAccess().playing">{{count}}</p>
+        <button type="button" *ngIf="!getAccess().playing" (click)="gameStart()"> Iniciar </button>
         <app-game-button [active]="system_colors.green" color="green" (guess)="playerGuess($event)"></app-game-button>
     </div>
 
@@ -29,5 +30,5 @@
                     <li>O jogo se reiniciará se você errar a ordem dos sinais.</li>
                 </ol>
     </section>
-    <button (click)="firstStart()">START</button>
+    <button (click)="gameStart()">START</button>
 </div>
