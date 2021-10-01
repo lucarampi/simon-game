@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
-import { COLORS, START_COUNT } from '../models'
+import { COLORS, START_COUNT, Config } from '../models'
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +21,30 @@ export class GameStateService {
     return COLORS[Math.floor(Math.random() * 3.9)];
   }
 
+  getAccess():Config {
+    const config = localStorage['session'];
+    return config ? JSON.parse(config) : false;
+  }
+
+  checkAccess(): void {
+    if (!this.getAccess()) {
+      let config = new Config()
+      console.log("CONFIG CREATED")
+
+      if (JSON.stringify(config) != undefined) {
+        localStorage['session'] = JSON.stringify(config);
+      }
+    }
+  }
+
+  firstStart(): void {
+    let config = this.getAccess();
+    console.log(config)
+    config.is_first_access = false;
+    console.log(config)
+    localStorage['session'] = JSON.stringify(config);
+  }
+
   appendSimon(incremtent: boolean = false): void {
     if (incremtent) {
       this.count++;
@@ -30,7 +54,7 @@ export class GameStateService {
   }
 
   generateSimon(): string[] {
-    console.log("GENERATING")
+    console.log("GENERATING SIMON")
 
     for (let i = 0; i < this.count; i++) {
       this.appendSimon();
@@ -60,6 +84,7 @@ export class GameStateService {
   audioButton(guess: string): void {
     let audio = new Audio()
     audio.autoplay
+
     switch (guess) {
       case 'red':
         audio.src = './assets/audios/red.mp3'

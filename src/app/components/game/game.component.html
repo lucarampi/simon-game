@@ -1,6 +1,7 @@
-<div class="container">
+<div *ngIf="!getAccess().is_first_access" class="container">
     <div class="flex center">
-        <app-game-button [active]="system_colors.red" color="red" class="sayure" (guess)="playerGuess($event)"></app-game-button>
+        <app-game-button [active]="system_colors.red" color="red" class="sayure" (guess)="playerGuess($event)">
+        </app-game-button>
     </div>
 
     <div class="flex middle">
@@ -12,4 +13,21 @@
     <div class="flex center">
         <app-game-button [active]="system_colors.yellow" color="yellow" (guess)="playerGuess($event)"></app-game-button>
     </div>
+</div>
+
+<div *ngIf="getAccess().is_first_access" class="container">
+    <section>
+        <h2>Instruções: </h2>
+
+                <ol>
+
+                    <li>Pressione o botão START para começar.</li>
+                    <li>Simon dará o primeiro sinal, Repita o sinal pressionando os botões das mesmas cores.</li>
+                    <li>Simon irá duplicar o primeiro sinal e adicionar um. Repita esses dois sinais pressionando os
+                        botões da mesma cor, na ordem.</li>
+                    <li>Continue a repetir os sinais enquanto você puder!</li>
+                    <li>O jogo se reiniciará se você errar a ordem dos sinais.</li>
+                </ol>
+    </section>
+    <button (click)="firstStart()">START</button>
 </div>
