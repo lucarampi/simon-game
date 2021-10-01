@@ -11,9 +11,17 @@ export class GameStateService {
   player: string[] = [];
   count: number;
   state = new Subject<any>();
+  audio = new Audio()
+  audio_red = new Audio("./assets/audios/red.mp3")
+  audio_yellow = new Audio("./assets/audios/yellow.mp3")
+  audio_blue = new Audio("./assets/audios/purple.mp3")
+  audio_green = new Audio("./assets/audios/green.mp3")
+  audio_wrong = new Audio("./assets/audios/wrong.mp3")
+
 
   constructor() {
     this.count = START_COUNT;
+    this.audio.autoplay
   }
 
   private get randomColor(): string {
@@ -27,14 +35,28 @@ export class GameStateService {
   }
 
   checkAccess(): void {
-    if (!this.getAccess()) {
-      let config = new Config()
+    let curr_config = this.getAccess()
+    if (!curr_config) {
+      curr_config = new Config()
       console.log("CONFIG CREATED")
-
-      if (JSON.stringify(config) != undefined) {
-        localStorage['session'] = JSON.stringify(config);
+      if (JSON.stringify(curr_config) != undefined) {
+        localStorage['session'] = JSON.stringify(curr_config);
       }
     }
+  }
+
+  toggleMuted(): boolean {
+    let config = this.getAccess()
+    config.muted = !config.muted
+    this.audio_red.muted = config.muted
+    this.audio_yellow.muted = config.muted
+    this.audio_blue.muted = config.muted
+    this.audio_green.muted = config.muted
+    this.audio_wrong.muted = config.muted
+
+    this.audio.muted = config.muted
+    localStorage['session'] = JSON.stringify(config);
+    return config.muted
   }
 
   firstStart(): void {
@@ -93,41 +115,37 @@ export class GameStateService {
     return config.playing
   }
 
-  audioButton(guess: string): void {
-    let audio = new Audio()
-    audio.autoplay
-
+  audioButton(guess: string):void {
     switch (guess) {
       case 'red':
-        audio.src = './assets/audios/red.mp3'
-        audio.load();
-        audio.play();
+        this.audio = this.audio_red
+        this.audio.play();
         break;
 
       case 'yellow':
-        audio.src = './assets/audios/yellow.mp3'
-        audio.load();
-        audio.play();
+        this.audio = this.audio_yellow
+        this.audio.play();
         break;
 
       case 'blue':
-        audio.src = './assets/audios/purple.mp3'
-        audio.load();
-        audio.play();
+        this.audio = this.audio_blue
+        this.audio.play();
         break;
 
       case 'green':
-        audio.src = './assets/audios/green.mp3'
-        audio.load();
-        audio.play();
+        this.audio = this.audio_green
+        this.audio.play();
         break;
 
       case 'wrong':
-        audio.src = './assets/audios/wrong.mp3'
-        audio.load();
-        audio.play();
+        this.audio = this.audio_wrong
+        this.audio.play();
+        break;
+
+      default:
         break;
     }
+
 
   }
 

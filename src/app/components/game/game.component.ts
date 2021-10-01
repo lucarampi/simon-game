@@ -52,6 +52,10 @@ export class GameComponent implements OnInit {
     this.gameService.checkAccess()
   }
 
+  toggleMuted():boolean{
+    return this.gameService.toggleMuted();
+  }
+
   getAccess(): Config {
     return this.gameService.getAccess()
   }

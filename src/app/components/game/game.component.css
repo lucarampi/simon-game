@@ -19,3 +19,9 @@ p{
 .middle{
     justify-content: space-around;
 }
+
+.fixed-top-right{
+    position: fixed;
+    top: 0;
+    right: 0;
+}

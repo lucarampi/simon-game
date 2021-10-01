@@ -1,3 +1,8 @@
+<div class="fixed-top-right">
+    <button *ngIf="getAccess().muted" type="button" (click)="toggleMuted()"> Unute</button>
+    <button *ngIf="!getAccess().muted" type="button" (click)="toggleMuted()"> Mute</button>
+</div>
+
 <div *ngIf="!getAccess().is_first_access" class="container">
     <div class="flex center">
         <app-game-button [active]="system_colors.red" color="red" class="sayure" (guess)="playerGuess($event)">
