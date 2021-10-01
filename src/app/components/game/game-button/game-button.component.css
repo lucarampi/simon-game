@@ -6,34 +6,67 @@ button {
     background-color: var(--black);
 }
 
+
 .green {
     border-color: var(--green);
+    background-color: var(--bg-button);
+    background-image: url("../../../../assets/img/filipe.png");
+    background-repeat: space;
+    background-position: center;
+    background-size: cover;
 }
 
-.green:active, .green.trigger {
+.green:active,
+.green.trigger {
     background-color: var(--green);
 }
 
-.blue {
-    border-color: var(--blue);
+.green:hover,
+.blue:hover,
+.red:hover,
+.yellow:hover {
+    background-color: var(--black);
 }
 
-.blue:active, .blue.trigger {
+
+.blue {
+    border-color: var(--blue);
+    background-color: var(--bg-button);
+    background-image: url("../../../../assets/img/lucas.png");
+    background-repeat: space;
+    background-position: center;
+    background-size: cover;
+}
+
+.blue:active,
+.blue.trigger {
     background-color: var(--blue);
 }
 
 .red {
     border-color: var(--red);
+    background-color: var(--bg-button);
+    background-image: url("../../../../assets/img/gustavo.png");
+    background-repeat: space;
+    background-position: center;
+    background-size: cover;
 }
 
-.red:active, .red.trigger {
+.red:active,
+.red.trigger {
     background-color: var(--red);
 }
 
 .yellow {
     border-color: var(--yellow);
+    background-color: var(--bg-button);
+    background-image: url("../../../../assets/img/sayure.png");
+    background-repeat: space;
+    background-position: center;
+    background-size: cover;
 }
 
-.yellow:active, .yellow.trigger {
+.yellow:active,
+.yellow.trigger {
     background-color: var(--yellow);
 }

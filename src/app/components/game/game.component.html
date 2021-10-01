@@ -1,11 +1,11 @@
 <div class="container">
     <div class="flex center">
-        <app-game-button [active]="system_colors.red" color="red" (guess)="playerGuess($event)"></app-game-button>
+        <app-game-button [active]="system_colors.red" color="red" class="sayure" (guess)="playerGuess($event)"></app-game-button>
     </div>
 
     <div class="flex middle">
         <app-game-button [active]="system_colors.blue" color="blue" (guess)="playerGuess($event)"></app-game-button>
-       <p>{{count}}</p>
+        <p>{{count}}</p>
         <app-game-button [active]="system_colors.green" color="green" (guess)="playerGuess($event)"></app-game-button>
     </div>
 

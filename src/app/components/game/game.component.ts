@@ -12,7 +12,7 @@ export class GameComponent implements OnInit {
   count?: number;
   system_colors: any = {
     red: false,
-    blue: false,
+    purple: false,
     green: false,
     yellow: false
   }
@@ -37,13 +37,14 @@ export class GameComponent implements OnInit {
     this.game.playerGuess(guess);
   }
 
+
   async teasePlayer(simon: string[]) {
     for (let i = 0; i < simon.length; i++) {
-      await sleep(300);
+      await sleep(700);
       this.system_colors[simon[i]] = true;
+      this.game.audioButton(simon[i])
       await sleep(500);
       this.system_colors[simon[i]] = false;
-      await sleep(200);
 
     }
   }

@@ -2,9 +2,10 @@
 :root {
     --black: #071013;
     --green: #29bf12;
-    --blue: #88bdbd;
+    --blue: purple;
     --red: #f21b3f;
     --yellow: #ff9915;
+    --bg-button: #262626
 }
 
 body {

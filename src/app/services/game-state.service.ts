@@ -43,16 +43,55 @@ export class GameStateService {
     console.log("RESTARTING")
     this.count = START_COUNT;
     this.player = [];
-    this.simon =[];
+    this.simon = [];
     return this.generateSimon();
   }
 
   playerGuess(guess: string) {
+    this.audioButton(guess);
     this.player.push(guess)
     if (!this.comparePlayerSimom()) {
+      this.audioButton('wrong');
       this.restartSimon()
     }
     this.setState();
+  }
+
+  audioButton(guess: string): void {
+    let audio = new Audio()
+    audio.autoplay
+    switch (guess) {
+      case 'red':
+        audio.src = './assets/audios/red.mp3'
+        audio.load();
+        audio.play();
+        break;
+
+      case 'yellow':
+        audio.src = './assets/audios/yellow.mp3'
+        audio.load();
+        audio.play();
+        break;
+
+      case 'blue':
+        audio.src = './assets/audios/purple.mp3'
+        audio.load();
+        audio.play();
+        break;
+
+      case 'green':
+        audio.src = './assets/audios/green.mp3'
+        audio.load();
+        audio.play();
+        break;
+
+      case 'wrong':
+        audio.src = './assets/audios/wrong.mp3'
+        audio.load();
+        audio.play();
+        break;
+    }
+
   }
 
   updateGame() {

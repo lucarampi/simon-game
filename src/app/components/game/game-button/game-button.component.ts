@@ -10,6 +10,7 @@ export class GameButtonComponent implements OnInit {
   @Input() color!: string;
   @Input() active: boolean = false;
 
+ 
   @Output()
   guess: EventEmitter<string> = new EventEmitter<string>();
   constructor() { }
@@ -18,6 +19,7 @@ export class GameButtonComponent implements OnInit {
   }
 
   onClick() {
+
     this.guess.emit(this.color);
   }
 }
