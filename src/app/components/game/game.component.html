@@ -1,18 +1,19 @@
-<div class="fixed-top-right">
-    <button *ngIf="getAccess().muted" type="button" (click)="toggleMuted()"> Unute</button>
-    <button *ngIf="!getAccess().muted" type="button" (click)="toggleMuted()"> Mute</button>
-</div>
+<div class="flex center middle">
+    <h1>SIMON GAME!</h1>
+    <button *ngIf="getAccess().muted" type="button" (click)="toggleMuted()" class="button-muted">Unmute</button>
+    <button *ngIf="!getAccess().muted" type="button" (click)="toggleMuted()" class="button-muted">Mute</button>
 
+</div>
 <div *ngIf="!getAccess().is_first_access" class="container">
     <div class="flex center">
         <app-game-button [active]="system_colors.red" color="red" class="sayure" (guess)="playerGuess($event)">
         </app-game-button>
     </div>
 
-    <div class="flex middle">
+    <div class="flex around">
         <app-game-button [active]="system_colors.blue" color="blue" (guess)="playerGuess($event)"></app-game-button>
-        <p *ngIf="getAccess().playing">{{count}}</p>
-        <button type="button" *ngIf="!getAccess().playing" (click)="gameStart()"> Iniciar </button>
+        <button *ngIf="getAccess().playing" type="button" class="button-center">{{count}}</button>
+        <button type="button" *ngIf="!getAccess().playing" (click)="playGame()" class="button-center"> Iniciar </button>
         <app-game-button [active]="system_colors.green" color="green" (guess)="playerGuess($event)"></app-game-button>
     </div>
 
@@ -25,15 +26,15 @@
     <section>
         <h2>Instruções: </h2>
 
-                <ol>
+        <ol>
 
-                    <li>Pressione o botão START para começar.</li>
-                    <li>Simon dará o primeiro sinal, Repita o sinal pressionando os botões das mesmas cores.</li>
-                    <li>Simon irá duplicar o primeiro sinal e adicionar um. Repita esses dois sinais pressionando os
-                        botões da mesma cor, na ordem.</li>
-                    <li>Continue a repetir os sinais enquanto você puder!</li>
-                    <li>O jogo se reiniciará se você errar a ordem dos sinais.</li>
-                </ol>
+            <li>Pressione o botão START para começar.</li>
+            <li>Simon dará o primeiro sinal, Repita o sinal pressionando os botões das mesmas cores.</li>
+            <li>Simon irá duplicar o primeiro sinal e adicionar um. Repita esses dois sinais pressionando os
+                botões da mesma cor, na ordem.</li>
+            <li>Continue a repetir os sinais enquanto você puder!</li>
+            <li>O jogo se reiniciará se você errar a ordem dos sinais.</li>
+        </ol>
     </section>
     <button (click)="gameStart()">START</button>
 </div>

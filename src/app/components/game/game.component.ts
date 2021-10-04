@@ -25,13 +25,13 @@ export class GameComponent implements OnInit {
     /**Every time state is updated, do this:
      *  */
     this.gameService.state.subscribe(state => {
-      console.log(state);
       if (this.count != state.count) {
         this.count = state.count;
         this.teasePlayer(state.simon);
       }
     });
     this.checkAccess();
+    this.gameService.setPlaying(false);
     this.config = this.getAccess();
   }
 
@@ -65,9 +65,13 @@ export class GameComponent implements OnInit {
     if (this.gameService.isFirstStart()) {
       this.gameService.firstStart()
     }
-    this.gameService.setPlaying(true);
-    this.gameService.restartSimon();
     this.ngOnInit();
+  }
+
+  playGame():void{
+      this.gameService.setPlaying(true);
+      this.gameService.restartSimon();
+
   }
 
 

@@ -21,11 +21,8 @@ button {
     background-color: var(--green);
 }
 
-.green:hover,
-.blue:hover,
-.red:hover,
-.yellow:hover {
-    background-color: var(--black);
+.green:hover {
+    background-color: var(--green-hover);
 }
 
 
@@ -43,6 +40,10 @@ button {
     background-color: var(--blue);
 }
 
+.blue:hover {
+    background-color: var(--blue-hover);
+}
+
 .red {
     border-color: var(--red);
     background-color: var(--bg-button);
@@ -57,6 +58,11 @@ button {
     background-color: var(--red);
 }
 
+
+.red:hover {
+    background-color: var(--red-hover);
+}
+
 .yellow {
     border-color: var(--yellow);
     background-color: var(--bg-button);
@@ -69,4 +75,32 @@ button {
 .yellow:active,
 .yellow.trigger {
     background-color: var(--yellow);
+}
+
+.yellow:hover {
+    background-color: var(--yellow-hover);
+}
+
+
+.green:hover,
+.blue:hover,
+.red:hover,
+.yellow:hover {
+box-shadow: rgb(145, 145, 145) 0 0 15px;
+}
+
+
+
+.green.trigger,
+.blue.trigger,
+.red.trigger,
+.yellow.trigger {
+    transform: scale(1.1);
+}
+
+.green:active,
+.blue:active,
+.red:active,
+.yellow:active {
+    transform: scale(0.97);
 }

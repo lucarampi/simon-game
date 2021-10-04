@@ -2,9 +2,13 @@
 :root {
     --black: #071013;
     --green: #29bf12;
+    --green-hover: #1fe700;
     --blue: purple;
+    --blue-hover: rgb(175, 0, 175);
     --red: #f21b3f;
+    --red-hover: #ff3d5e;
     --yellow: #ff9915;
+    --yellow-hover: #ffb350;
     --bg-button: #262626
 }
 
@@ -12,4 +16,27 @@ body {
     background-color: var(--black);
     color: whitesmoke;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.button-center {
+    color: whitesmoke;
+    font-size: x-large;
+    font-weight: bolder;
+    width: 6rem;
+    height: 6rem;
+    border: 0.2rem solid;
+    border-radius: 4rem;
+    background-color: var(--black);
+}
+
+.button-muted {
+    position: fixed;
+    top:5vh;
+    right: 1vw; 
+    color: whitesmoke;
+    font-weight: bolder;
+    height: 2rem;
+    border: 0.2rem solid;
+    border-radius: 4rem;
+    background-color: var(--black);
 }

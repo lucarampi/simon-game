@@ -12,29 +12,28 @@ export class GameStateService {
   count: number;
   state = new Subject<any>();
   audio = new Audio()
-  audio_red = new Audio("./assets/audios/red.mp3")
-  audio_yellow = new Audio("./assets/audios/yellow.mp3")
-  audio_blue = new Audio("./assets/audios/purple.mp3")
-  audio_green = new Audio("./assets/audios/green.mp3")
-  audio_wrong = new Audio("./assets/audios/wrong.mp3")
+  // audio_red = new Audio("./assets/audios/red.mp3")
+  // audio_yellow = new Audio("./assets/audios/yellow.mp3")
+  // audio_blue = new Audio("./assets/audios/purple.mp3")
+  // audio_green = new Audio("./assets/audios/green.mp3")
+  // audio_wrong = new Audio("./assets/audios/wrong.mp3")
 
 
   constructor() {
     this.count = START_COUNT;
     this.audio.load()
-    this.audio_red.load()
-    this.audio_yellow.load()
-    this.audio_blue.load()
-    this.audio_green.load()
-    this.audio_wrong.load()
-    this.audio.autoplay
-    this.audio.autoplay
-    this.audio_red.autoplay
-    this.audio_yellow.autoplay
-    this.audio_blue.autoplay
-    this.audio_green.autoplay
-    this.audio_wrong.autoplay
-
+    // this.audio_red.load()
+    // this.audio_yellow.load()
+    // this.audio_blue.load()
+    // this.audio_green.load()
+    // this.audio_wrong.load()
+    // this.audio.autoplay
+    // this.audio.autoplay
+    // this.audio_red.autoplay
+    // this.audio_yellow.autoplay
+    // this.audio_blue.autoplay
+    // this.audio_green.autoplay
+    // this.audio_wrong.autoplay
   }
 
   private get randomColor(): string {
@@ -61,11 +60,11 @@ export class GameStateService {
   toggleMuted(): boolean {
     let config = this.getAccess()
     config.muted = !config.muted
-    this.audio_red.muted = config.muted
-    this.audio_yellow.muted = config.muted
-    this.audio_blue.muted = config.muted
-    this.audio_green.muted = config.muted
-    this.audio_wrong.muted = config.muted
+    // this.audio_red.muted = config.muted
+    // this.audio_yellow.muted = config.muted
+    // this.audio_blue.muted = config.muted
+    // this.audio_green.muted = config.muted
+    // this.audio_wrong.muted = config.muted
     this.audio.muted = config.muted
     localStorage['session'] = JSON.stringify(config);
     return config.muted
@@ -108,10 +107,12 @@ export class GameStateService {
   }
 
   playerGuess(guess: string) {
-    this.audioButton(guess);
     this.player.push(guess)
     if (!this.comparePlayerSimom()) {
       this.audioButton('wrong');
+
+    } else {
+      this.audioButton(guess);
     }
     this.setState();
   }
@@ -127,38 +128,10 @@ export class GameStateService {
     return config.playing
   }
 
-  audioButton(guess: string):void {
-    switch (guess) {
-      case 'red':
-        this.audio = this.audio_red
-        this.audio.play();
-        break;
-
-      case 'yellow':
-        this.audio = this.audio_yellow
-        this.audio.play();
-        break;
-
-      case 'blue':
-        this.audio = this.audio_blue
-        this.audio.play();
-        break;
-
-      case 'green':
-        this.audio = this.audio_green
-        this.audio.play();
-        break;
-
-      case 'wrong':
-        this.audio = this.audio_wrong
-        this.audio.play();
-        break;
-
-      default:
-        break;
-    }
-
-
+  async audioButton(guess: string) {
+    this.audio.src = "./assets/audios/" + guess + ".mp3";
+    this.audio.load();
+    await this.audio.play();
   }
 
   updateGame() {

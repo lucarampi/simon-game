@@ -16,8 +16,12 @@ p{
    align-items: baseline;
 }
 
-.middle{
+.around{
     justify-content: space-around;
+}
+
+.middle{
+    align-items: center;
 }
 
 .fixed-top-right{
